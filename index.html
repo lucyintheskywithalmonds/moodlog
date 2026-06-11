@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodLog</title>
+    <title>moodlog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,39 +23,43 @@
         }
 
         .container {
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
+            margin-bottom: 50px;
+            padding-top: 30px;
         }
 
         h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             color: #2d2d2d;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            text-transform: lowercase;
+            letter-spacing: 1px;
         }
 
         .subtitle {
-            font-size: 14px;
+            font-size: 13px;
             color: #999;
             font-weight: 400;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .mood-input-section {
             background: white;
             border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
+            padding: 28px;
+            margin-bottom: 32px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .form-group:last-child {
@@ -64,40 +68,44 @@
 
         label {
             display: block;
-            font-size: 13px;
+            font-size: 11px;
             font-weight: 600;
             color: #2d2d2d;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            text-transform: lowercase;
+            letter-spacing: 1px;
         }
 
         .mood-selector {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .mood-btn {
-            padding: 12px;
-            border: 2px solid #e8e3dd;
-            border-radius: 8px;
+            padding: 10px 14px;
+            border: 1px solid #e8e3dd;
+            border-radius: 6px;
             background: white;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 12px;
             transition: all 0.2s ease;
             font-weight: 500;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
+            color: #666;
         }
 
         .mood-btn:hover {
             border-color: #7eb3d4;
-            transform: scale(1.05);
+            color: #7eb3d4;
         }
 
         .mood-btn.active {
             border-color: #7eb3d4;
             background: #e8f2f8;
+            color: #7eb3d4;
             box-shadow: 0 2px 8px rgba(126, 179, 212, 0.15);
         }
 
@@ -105,12 +113,18 @@
             width: 100%;
             min-height: 100px;
             padding: 12px;
-            border: 2px solid #e8e3dd;
-            border-radius: 8px;
+            border: 1px solid #e8e3dd;
+            border-radius: 6px;
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             resize: vertical;
             transition: border-color 0.2s ease;
+            color: #666;
+        }
+
+        textarea::placeholder {
+            color: #ccc;
+            text-transform: lowercase;
         }
 
         textarea:focus {
@@ -122,11 +136,12 @@
         .date-input {
             width: 100%;
             padding: 10px;
-            border: 2px solid #e8e3dd;
-            border-radius: 8px;
+            border: 1px solid #e8e3dd;
+            border-radius: 6px;
             font-family: 'Inter', sans-serif;
             font-size: 14px;
             transition: border-color 0.2s ease;
+            color: #666;
         }
 
         .date-input:focus {
@@ -140,11 +155,13 @@
             background: linear-gradient(135deg, #7eb3d4 0%, #6a9fb8 100%);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 6px;
+            font-size: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-save:hover {
@@ -157,25 +174,24 @@
         }
 
         .history-section {
-            margin-top: 40px;
+            margin-top: 48px;
         }
 
         .section-title {
-            font-size: 18px;
+            font-size: 11px;
             font-weight: 600;
             color: #2d2d2d;
             margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-size: 14px;
+            text-transform: lowercase;
+            letter-spacing: 1px;
         }
 
         .mood-entry {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 16px;
             margin-bottom: 12px;
-            border-left: 4px solid #7eb3d4;
+            border-left: 3px solid #7eb3d4;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
             transition: all 0.2s ease;
         }
@@ -188,23 +204,29 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .entry-date {
-            font-size: 12px;
+            font-size: 11px;
             color: #999;
             font-weight: 500;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .entry-mood {
-            font-size: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7eb3d4;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .entry-note {
-            font-size: 14px;
+            font-size: 13px;
             color: #666;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-top: 8px;
         }
 
@@ -212,12 +234,14 @@
             background: #f0e8e3;
             color: #999;
             border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
+            padding: 6px 10px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.2s ease;
             font-weight: 500;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-delete:hover {
@@ -228,12 +252,13 @@
         .empty-state {
             text-align: center;
             padding: 40px 20px;
-            color: #ccc;
         }
 
         .empty-state p {
-            font-size: 14px;
+            font-size: 13px;
             color: #bbb;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .stats-grid {
@@ -245,11 +270,11 @@
 
         .stat-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 16px;
             text-align: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-            border-top: 3px solid #7eb3d4;
+            border-top: 2px solid #7eb3d4;
         }
 
         .stat-value {
@@ -260,15 +285,15 @@
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #999;
-            text-transform: uppercase;
+            text-transform: lowercase;
             letter-spacing: 0.5px;
         }
 
         .mood-distribution {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 16px;
             margin-bottom: 24px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -277,7 +302,7 @@
         .distribution-item {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             gap: 12px;
         }
 
@@ -285,14 +310,18 @@
             margin-bottom: 0;
         }
 
-        .mood-emoji {
-            font-size: 18px;
-            min-width: 24px;
+        .mood-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: #666;
+            min-width: 60px;
+            text-transform: lowercase;
+            letter-spacing: 0.5px;
         }
 
         .distribution-bar {
             flex: 1;
-            height: 6px;
+            height: 5px;
             background: #e8e3dd;
             border-radius: 3px;
             overflow: hidden;
@@ -306,23 +335,28 @@
         }
 
         .distribution-count {
-            font-size: 12px;
+            font-size: 11px;
             color: #999;
-            min-width: 30px;
+            min-width: 25px;
             text-align: right;
         }
 
         @media (max-width: 600px) {
             header {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
 
             h1 {
-                font-size: 26px;
+                font-size: 24px;
             }
 
             .mood-selector {
-                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+
+            .mood-btn {
+                padding: 8px 12px;
+                font-size: 11px;
             }
 
             .stats-grid {
@@ -334,48 +368,64 @@
 <body>
     <div class="container">
         <header>
-            <h1>MoodLog</h1>
-            <p class="subtitle">Track your mood, understand your patterns</p>
+            <h1>moodlog</h1>
+            <p class="subtitle">track your mood, understand your patterns</p>
         </header>
 
         <div class="mood-input-section">
             <div class="form-group">
-                <label for="date">Date</label>
+                <label for="date">date</label>
                 <input type="date" id="date" class="date-input">
             </div>
 
             <div class="form-group">
-                <label>How are you feeling?</label>
+                <label>how are you feeling?</label>
                 <div class="mood-selector">
-                    <button class="mood-btn" data-mood="😢">😢</button>
-                    <button class="mood-btn" data-mood="😕">😕</button>
-                    <button class="mood-btn" data-mood="😐">😐</button>
-                    <button class="mood-btn" data-mood="🙂">🙂</button>
-                    <button class="mood-btn" data-mood="😊">😊</button>
+                    <button class="mood-btn" data-mood="sad">sad</button>
+                    <button class="mood-btn" data-mood="anxious">anxious</button>
+                    <button class="mood-btn" data-mood="bored">bored</button>
+                    <button class="mood-btn" data-mood="angry">angry</button>
+                    <button class="mood-btn" data-mood="manic">manic</button>
+                    <button class="mood-btn" data-mood="calm">calm</button>
+                    <button class="mood-btn" data-mood="hopeful">hopeful</button>
+                    <button class="mood-btn" data-mood="tired">tired</button>
+                    <button class="mood-btn" data-mood="lonely">lonely</button>
+                    <button class="mood-btn" data-mood="content">content</button>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="note">Notes (optional)</label>
-                <textarea id="note" placeholder="What's on your mind?"></textarea>
+                <label for="note">notes (optional)</label>
+                <textarea id="note" placeholder="what's on your mind?"></textarea>
             </div>
 
-            <button class="btn-save">Save Entry</button>
+            <button class="btn-save">save</button>
         </div>
 
         <div class="history-section">
-            <h2 class="section-title">📊 Overview</h2>
+            <h2 class="section-title">overview</h2>
             <div class="stats-grid" id="stats"></div>
             <div class="mood-distribution" id="distribution"></div>
 
-            <h2 class="section-title">📖 Recent Entries</h2>
+            <h2 class="section-title">recent entries</h2>
             <div id="history"></div>
         </div>
     </div>
 
     <script>
-        const moods = ['😢', '😕', '😐', '🙂', '😊'];
-        const moodValues = { '😢': 1, '😕': 2, '😐': 3, '🙂': 4, '😊': 5 };
+        const moods = ['sad', 'anxious', 'bored', 'angry', 'manic', 'calm', 'hopeful', 'tired', 'lonely', 'content'];
+        const moodValues = { 
+            'sad': 1, 
+            'anxious': 2, 
+            'bored': 2, 
+            'angry': 2, 
+            'manic': 3, 
+            'tired': 2, 
+            'lonely': 1, 
+            'calm': 4, 
+            'hopeful': 5, 
+            'content': 5 
+        };
         let selectedMood = null;
 
         // Initialize date input with today's date
@@ -399,7 +449,7 @@
             const note = document.getElementById('note').value;
 
             if (!date || !selectedMood) {
-                alert('Please select a date and mood');
+                alert('please select a date and mood');
                 return;
             }
 
@@ -458,19 +508,19 @@
             statsDiv.innerHTML = `
                 <div class="stat-card">
                     <div class="stat-value">${totalEntries}</div>
-                    <div class="stat-label">Total Entries</div>
+                    <div class="stat-label">total entries</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">${avgMood}</div>
-                    <div class="stat-label">Avg Mood</div>
+                    <div class="stat-label">avg mood</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">${last7Days}</div>
-                    <div class="stat-label">Last 7 Days</div>
+                    <div class="stat-label">last 7 days</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">${currentStreak}</div>
-                    <div class="stat-label">Day Streak</div>
+                    <div class="stat-label">day streak</div>
                 </div>
             `;
         }
@@ -497,20 +547,20 @@
 
         function updateDistribution(entries) {
             const distributionDiv = document.getElementById('distribution');
-            const counts = { '😢': 0, '😕': 0, '😐': 0, '🙂': 0, '😊': 0 };
+            const counts = {};
+            moods.forEach(mood => counts[mood] = 0);
 
             entries.forEach(e => counts[e.mood]++);
 
             const total = entries.length || 1;
-            const emojiOrder = ['😢', '😕', '😐', '🙂', '😊'];
 
             distributionDiv.innerHTML = `
-                ${emojiOrder.map(mood => {
+                ${moods.map(mood => {
                     const count = counts[mood];
                     const percentage = (count / total) * 100;
                     return `
                         <div class="distribution-item">
-                            <div class="mood-emoji">${mood}</div>
+                            <div class="mood-label">${mood}</div>
                             <div class="distribution-bar">
                                 <div class="distribution-fill" style="width: ${percentage}%"></div>
                             </div>
@@ -525,7 +575,7 @@
             const historyDiv = document.getElementById('history');
 
             if (entries.length === 0) {
-                historyDiv.innerHTML = '<div class="empty-state"><p>No entries yet. Start tracking your mood!</p></div>';
+                historyDiv.innerHTML = '<div class="empty-state"><p>no entries yet. start tracking your mood.</p></div>';
                 return;
             }
 
@@ -535,7 +585,7 @@
                         <div class="entry-date">${new Date(entry.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}</div>
                         <div style="display: flex; gap: 8px; align-items: center;">
                             <span class="entry-mood">${entry.mood}</span>
-                            <button class="btn-delete" onclick="deleteEntry(${entry.id})">Delete</button>
+                            <button class="btn-delete" onclick="deleteEntry(${entry.id})">delete</button>
                         </div>
                     </div>
                     ${entry.note ? `<div class="entry-note">${entry.note}</div>` : ''}
@@ -544,7 +594,7 @@
         }
 
         function deleteEntry(id) {
-            if (confirm('Are you sure?')) {
+            if (confirm('are you sure?')) {
                 const entries = JSON.parse(localStorage.getItem('moodEntries')) || [];
                 const filtered = entries.filter(e => e.id !== id);
                 localStorage.setItem('moodEntries', JSON.stringify(filtered));
