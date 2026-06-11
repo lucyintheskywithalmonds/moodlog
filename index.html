@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#eef2f9">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="moodlog">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%239db3d4' width='180' height='180'/><text x='50%' y='50%' font-size='60' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central' font-family='system-ui'>📊</text></svg>">
+    <link rel="manifest" href="data:application/json,{\"name\":\"moodlog\",\"short_name\":\"moodlog\",\"description\":\"Track your mood, understand your patterns\",\"start_url\":\"./\",\"display\":\"standalone\",\"background_color\":\"#eef2f9\",\"theme_color\":\"#9db3d4\",\"scope\":\"/\",\"icons\":[{\"src\":\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%239db3d4' width='192' height='192' rx='45'/><text x='50%' y='50%' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='central' font-family='system-ui'>📊</text></svg>\",\"sizes\":\"192x192\",\"type\":\"image/svg+xml\",\"purpose\":\"any\"}]}">
     <title>moodlog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +20,11 @@
             box-sizing: border-box;
         }
 
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #eef2f9 0%, #e8ecf5 100%);
@@ -21,6 +32,8 @@
             min-height: 100vh;
             padding: 20px;
             transition: background 0.3s ease;
+            padding-top: max(20px, env(safe-area-inset-top));
+            padding-bottom: max(20px, env(safe-area-inset-bottom));
         }
 
         .container {
@@ -66,10 +79,11 @@
             box-shadow: 0 2px 8px rgba(90, 110, 143, 0.08);
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: flex-end;
             flex: 0 0 auto;
+            max-width: 280px;
         }
 
         .settings-label {
@@ -82,16 +96,19 @@
 
         .bg-options {
             display: flex;
-            gap: 8px;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .bg-btn {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 4px;
             border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.2s ease;
+            flex-shrink: 0;
         }
 
         .bg-btn:hover {
@@ -531,6 +548,7 @@
             .settings-panel {
                 width: 100%;
                 justify-content: center;
+                max-width: none;
             }
 
             .main-layout {
@@ -549,7 +567,7 @@
 
             .settings-panel {
                 padding: 10px 12px;
-                gap: 12px;
+                gap: 10px;
             }
 
             .mood-selector {
@@ -571,6 +589,11 @@
 
             .calendar-day {
                 font-size: 10px;
+            }
+
+            .bg-btn {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
@@ -661,14 +684,29 @@
         const backgroundThemes = {
             periwinkle: 'linear-gradient(135deg, #eef2f9 0%, #e8ecf5 100%)',
             lavender: 'linear-gradient(135deg, #f5e8f8 0%, #ede1f3 100%)',
+            lilac: 'linear-gradient(135deg, #f0e8fa 0%, #e6d9f0 100%)',
             mint: 'linear-gradient(135deg, #e8f5f1 0%, #dff0eb 100%)',
+            sage: 'linear-gradient(135deg, #e8f1eb 0%, #dce8e0 100%)',
             peach: 'linear-gradient(135deg, #f9ede8 0%, #f3e1d8 100%)',
-            pale: 'linear-gradient(135deg, #f5f5f5 0%, #ececec 100%)'
+            rose: 'linear-gradient(135deg, #f9ebe8 0%, #f0dbd6 100%)',
+            coral: 'linear-gradient(135deg, #fbe8e3 0%, #f5d9ce 100%)',
+            cream: 'linear-gradient(135deg, #fdf9f4 0%, #f5ede4 100%)',
+            pale: 'linear-gradient(135deg, #f5f5f5 0%, #ececec 100%)',
+            sky: 'linear-gradient(135deg, #e3f2fd 0%, #d1e7f5 100%)',
+            ocean: 'linear-gradient(135deg, #dde9f5 0%, #cfe0ef 100%)',
+            butter: 'linear-gradient(135deg, #fffae8 0%, #fff5cc 100%)',
+            honeydew: 'linear-gradient(135deg, #f0fde8 0%, #e5fad9 100%)',
+            blush: 'linear-gradient(135deg, #ffe8f0 0%, #ffd9e6 100%)'
         };
 
         let selectedMoods = [];
         let currentCalendarDate = new Date();
         let currentTheme = 'periwinkle';
+
+        // Register service worker for PWA
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:application/javascript,self.addEventListener("install",e=>self.skipWaiting());self.addEventListener("activate",e=>e.waitUntil(clients.claim()));').catch(() => {});
+        }
 
         // Initialize
         initializeThemeSelector();
@@ -684,6 +722,7 @@
                 const btn = document.createElement('button');
                 btn.className = 'bg-btn';
                 btn.style.background = backgroundThemes[theme];
+                btn.title = theme;
                 if (theme === savedTheme) {
                     btn.classList.add('active');
                 }
@@ -705,6 +744,7 @@
 
         function applyTheme(theme) {
             document.body.style.background = backgroundThemes[theme];
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', backgroundThemes[theme].split('(')[1].split(' ')[0]);
         }
 
         // Mood selection (now supports multiple)
